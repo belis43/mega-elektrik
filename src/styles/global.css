@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* --- Renk sistemi (merkezi design tokens) ---
+     Mega Elektrik kurumsal renkleri geldiğinde sadece bu değerler
+     güncellenerek tüm site tek yerden temalandırılabilir.
+     Ana turkuaz TAM OLARAK istenen değerdir: #57FAF1. */
+  --color-primary: #57faf1;
+  --color-primary-light: #eafffe;
+  /* #57FAF1 çok açık bir ton olduğu için üzerine beyaz metin WCAG kontrastını
+     karşılamaz. Beyaz metin gereken alanlarda (ör. marka bloğu, koyu CTA
+     hover) bu daha koyu türetilmiş ton kullanılır; ana marka rengini
+     ezmez, sadece erişilebilirlik için tamamlayıcıdır. */
+  --color-primary-dark: #0f9e97;
+
+  --color-secondary: #6438b5;
+  --color-secondary-light: #f1eafc;
+  --color-secondary-dark: #4c2a8c;
+
+  --color-background: #ffffff;
+  --color-surface: #f8f9fa;
+  --color-surface-alt: #f5f1fb;
+
+  --color-text: #10233f;
+  --color-muted: #5c6b7a;
+  --color-line: #e4e8ec;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Erişilebilir odak durumu */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+/* Ölçüm/teknik atmosfer için ince grid dokusu - dekoratif, ekran okuyucudan gizli */
+.grid-texture {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
